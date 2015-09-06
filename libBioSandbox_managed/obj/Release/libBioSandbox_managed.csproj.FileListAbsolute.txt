@@ -1,0 +1,6 @@
+C:\Stuff\biosandbox\libBioSandbox_managed\bin\Release\libBioSandbox_managed.dll
+C:\Stuff\biosandbox\libBioSandbox_managed\bin\Release\libBioSandbox_managed.pdb
+C:\Stuff\biosandbox\libBioSandbox_managed\obj\Release\libBioSandbox_managed.dll
+C:\Stuff\biosandbox\libBioSandbox_managed\obj\Release\libBioSandbox_managed.pdb
+C:\Stuff\biosandbox\Release\32\libBioSandbox_managed.dll
+C:\Stuff\biosandbox\Release\32\libBioSandbox_managed.pdb

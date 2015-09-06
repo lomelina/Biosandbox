@@ -1,0 +1,14 @@
+C:\Stuff\biosandbox\libBioSandbox_managed\bin\Debug\libBioSandbox_managed.dll
+C:\Stuff\biosandbox\libBioSandbox_managed\bin\Debug\libBioSandbox_managed.pdb
+C:\Stuff\biosandbox\Debug\libBioSandbox_managed.dll
+C:\Stuff\biosandbox\Debug\libBioSandbox_managed.pdb
+C:\Stuff\biosandbox\Debug\32\libBioSandbox_managed.dll
+C:\Stuff\biosandbox\Debug\32\libBioSandbox_managed.pdb
+C:\Stuff\biosandbox\libBioSandbox_managed\obj\Debug\libBioSandbox_managed.dll
+C:\Stuff\biosandbox\libBioSandbox_managed\obj\Debug\libBioSandbox_managed.pdb
+C:\Stuff\biosandbox\libBioSandbox_managed\obj\Debug\libBioSandbox_managed.csprojResolveAssemblyReference.cache
+D:\Stuff\biosandbox\TEST_AUTOBUILD\Debug\32\libBioSandbox_managed.dll
+D:\Stuff\biosandbox\TEST_AUTOBUILD\Debug\32\libBioSandbox_managed.pdb
+D:\Stuff\biosandbox\TEST_AUTOBUILD\libBioSandbox_managed\obj\Debug\libBioSandbox_managed.csprojResolveAssemblyReference.cache
+D:\Stuff\biosandbox\TEST_AUTOBUILD\libBioSandbox_managed\obj\Debug\libBioSandbox_managed.dll
+D:\Stuff\biosandbox\TEST_AUTOBUILD\libBioSandbox_managed\obj\Debug\libBioSandbox_managed.pdb
