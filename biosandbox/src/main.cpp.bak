@@ -1,0 +1,50 @@
+/**
+ * @file main.cpp
+ * @author  Lubos Omelina <lomelina@gmail.com>
+ * 
+ *
+ */
+
+
+#include <iostream>
+#include <set>
+#include "base/WorkflowEngine.h"
+#include "conf/XmlConfigurationLoader.h"
+
+void print_usage(){
+	cerr<< "Usage:"<<endl;
+	cerr<< "\tbiosandbox configuration.xml"<<endl;	
+}
+
+int main(int argc, char ** argv){
+	string confFile = "";
+	set<string> arguments;
+	cout<<"Parsing arguments..."<<endl;
+	
+	for(int i=1; i<argc; i++){
+		string parameter = string(argv[i]);
+		if(parameter.at(0) == '-')
+			arguments.insert(parameter);
+		else
+			confFile = parameter;
+	}	
+	if(confFile == ""){
+		cerr<< "No configuration file defined!"<<endl;
+		print_usage();
+		return 0;
+	}
+
+	XmlConfigurationLoader * loader = new XmlConfigurationLoader();
+	
+	Configuration * conf = loader->loadForm(confFile);
+	if(conf == 0){
+		cerr<< "Unable to load configuration file: "<< confFile << endl;
+		return 0;
+	}
+
+	WorkflowEngine * we = new WorkflowEngine();
+	
+	we->startProcess(conf);
+	
+	return 0;
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Input>
+    <Module src="SimpleLineInputModule.dll" dataFile="train.txt"/>
+  </Input>
+  <Preprocessing >
+    <Module src="Dummy.dll"/>
+  </Preprocessing>
+  <FeaturesExtraction >
+    <Module src="Dummy.dll"/>
+  </FeaturesExtraction>
+  <Finishing>
+    <Module src="Dummy.dll"/>
+  </Finishing>
+  
+</Configuration>

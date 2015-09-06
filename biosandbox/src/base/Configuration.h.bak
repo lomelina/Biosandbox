@@ -1,0 +1,68 @@
+/**
+ * @file Configuration.h
+ * @author  Lubos Omelina <lomelina@gmail.com>
+ * 
+ *
+ */
+
+#ifndef CONFIGURATION_H_
+#define CONFIGURATION_H_
+
+#include "Modules.h"
+
+class Configuration
+{
+public:
+	Configuration(void);
+	Configuration(	vector<BaseModule *> input,
+					vector<BaseModule *> preprocessing,
+					vector<BaseModule *> featuresExtraction,
+					vector<BaseModule *> finishing)
+								: 
+							inputModules(input),
+							preprocessingModules(preprocessing),
+							featureExtractionModules(featuresExtraction),
+							finishingModules(finishing) {};
+	~Configuration(void);
+	
+	int preprocessingModulesCount(){ return preprocessingModules.size();};
+	PreprocessingModule * getPreprocessingModule(unsigned int index){
+		if(index<preprocessingModules.size()){
+			return dynamic_cast<PreprocessingModule *>(preprocessingModules[index]);
+		}
+		return 0;
+	};
+
+	InputModule * getInputModule(){
+
+		// TODO: THIS IS DANGEROUS. THIS WILL BE REWORKED FOR MORE FEATURE EXTRACTION MODULES (HOPEFULLY)
+		return dynamic_cast<InputModule *>(inputModules[0]);
+	};
+
+	FeatureExtractionModule * getFeatureExtractionModule(){
+
+		// TODO: THIS IS DANGEROUS. THIS WILL BE REWORKED FOR MORE FEATURE EXTRACTION MODULES (HOPEFULLY)
+		return dynamic_cast<FeatureExtractionModule *>(featureExtractionModules[0]);
+	};
+
+	FinishingModule * getFinishingModule(){
+
+		// TODO: THIS IS DANGEROUS. THIS WILL BE REWORKED FOR MORE FEATURE EXTRACTION MODULES (HOPEFULLY)
+		return dynamic_cast<FinishingModule *>(finishingModules[0]);
+	};
+
+private:
+	vector<BaseModule *> inputModules;
+	vector<BaseModule *> preprocessingModules;
+	vector<BaseModule *> featureExtractionModules;
+	vector<BaseModule *> finishingModules;
+};
+
+class ConfigurationLoader	{
+public:
+	ConfigurationLoader() {};
+	virtual ~ConfigurationLoader() {};
+	virtual Configuration * loadForm(string source)=0;
+};
+
+#endif // CONFIGURATION_H_

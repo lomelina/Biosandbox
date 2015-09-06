@@ -1,0 +1,44 @@
+/**
+ * @file WinDynamicLoader.cpp
+ * @author  Lubos Omelina <lomelina@gmail.com>
+ * 
+ *
+ */
+
+#include <windows.h>
+#include <winbase.h>
+
+#include "base/DynamicLoader.h"
+
+
+
+DynamicLibraryLoader::DynamicLibraryLoader(){
+
+}
+
+DynamicLibraryLoader::~DynamicLibraryLoader(){
+
+}
+
+BaseModule * DynamicLibraryLoader::loadModuleFrom(string moduleFile){
+	WCHAR libraryPath[MAX_PATH];
+	MultiByteToWideChar( 0,0, moduleFile.c_str(), moduleFile.length()+1, libraryPath, MAX_PATH);
+	
+	HMODULE hModule = LoadLibrary(libraryPath);
+	if (hModule == 0){
+		cerr<<"Unable to load library "<< moduleFile<<endl;
+		return 0;
+	}
+	
+	GMFF GetModuleFromFile = (GMFF)GetProcAddress(hModule, "GetModuleFromFile");
+	if(GetModuleFromFile == 0){
+		cerr<<"Library "<< moduleFile<<" doesn't contain any Biosandbox module or module is not visible."<<endl;
+		return 0;
+	}
+
+	BaseModule * module = GetModuleFromFile();
+	if(module == 0){
+		return 0;
+	}
+	return module;
+}

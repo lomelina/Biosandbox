@@ -1,0 +1,115 @@
+/**
+ * @file Modules.h
+ * @author  Lubos Omelina <lomelina@gmail.com>
+ * 
+ *
+ */
+
+#ifndef PROPERTY_H_
+#define PROPERTY_H_
+
+
+#include "Sample.h"
+
+class Property{
+private:
+	string name;
+};
+
+enum ModuleType{
+	Input = 0,
+	Preprocessing,
+	FeaturesExtractuion,
+	Finishing
+};
+
+class BaseModule{
+public:
+	BaseModule() {};
+	virtual ~BaseModule() {};
+	vector<Property> getGeneratedProperties();
+	bool validate(vector<Property> * m);
+	void addAttribute(string name, string value){
+		if(attributes.find(name) == attributes.end())
+			attributes.insert(pair<string, string>(name,value));
+	};
+
+protected:
+	map<string,string> attributes;
+};
+
+
+class InputModule: public BaseModule{
+public: 
+	virtual bool read(vector<Sample *> & samplesToProcess) = 0;
+};
+
+class PreprocessingModule: public BaseModule{
+public: 
+	virtual bool process(vector<Sample *> & samplesToProcess) = 0;
+};
+
+class FeatureExtractionModule: public BaseModule{
+public: 
+	virtual bool extractFeatures(vector<Sample *> & samplesToProcess) = 0;
+};
+
+class FinishingModule: public BaseModule{
+public: 
+	virtual bool finish(vector<Sample *> & samplesToProcess) = 0;
+};
+
+
+extern "C" 
+#if defined(WIN32)
+	__declspec(dllexport) 
+#endif
+	BaseModule * GetModuleFromFile();
+
+
+typedef BaseModule * (*GMFF)();
+
+
+#define INTERN_LIBRARY_INTERFACE(MODULE_NAME) \
+extern "C" __declspec(dllexport) BaseModule * GetModuleFromFile() {\
+		return new MODULE_NAME();\
+	}
+
+#define INPUT_MODULE( MODULE_NAME ) \
+	class MODULE_NAME : public InputModule {\
+		public:\
+			MODULE_NAME(){};\
+			~MODULE_NAME(){};\
+			bool read(vector<Sample *> & samplesToProcess);\
+	};\
+	INTERN_LIBRARY_INTERFACE( MODULE_NAME )
+
+#define PREPROCESSING_MODULE( MODULE_NAME ) \
+	class MODULE_NAME : public PreprocessingModule {\
+		public:\
+			MODULE_NAME(){};\
+			~MODULE_NAME(){};\
+			bool process(vector<Sample *> & samplesToProcess);\
+	};\
+	INTERN_LIBRARY_INTERFACE( MODULE_NAME )
+
+#define FEATURESEXTRACTION_MODULE( MODULE_NAME ) \
+	class MODULE_NAME : public FeatureExtractionModule {\
+		public:\
+			MODULE_NAME(){};\
+			~MODULE_NAME(){};\
+			bool extractFeatures(vector<Sample *> & samplesToProcess);\
+	};\
+	INTERN_LIBRARY_INTERFACE( MODULE_NAME )
+
+#define FINISHING_MODULE( MODULE_NAME ) \
+	class MODULE_NAME : public FinishingModule {\
+		public:\
+			MODULE_NAME(){};\
+			~MODULE_NAME(){};\
+			bool finish(vector<Sample *> & samplesToProcess);\
+	};\
+	INTERN_LIBRARY_INTERFACE( MODULE_NAME )
+
+
+#endif // PROPERTY_H_
