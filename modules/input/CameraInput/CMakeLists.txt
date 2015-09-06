@@ -1,0 +1,7 @@
+INCLUDE_DIRECTORIES(${BIOSANDBOX_SOURCE}/include ${OpenCV_INCLUDE_DIRS})
+
+ADD_LIBRARY( CameraInput SHARED main)
+TARGET_LINK_LIBRARIES( CameraInput opencv_core opencv_highgui)
+SET_PROPERTY(TARGET CameraInput    PROPERTY FOLDER "input")
+
+INSTALL(TARGETS CameraInput DESTINATION bin/modules )
