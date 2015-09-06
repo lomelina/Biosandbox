@@ -1,0 +1,10 @@
+INCLUDE(FindKinect2SDK.cmake)
+
+INCLUDE_DIRECTORIES(${BIOSANDBOX_SOURCE}/include ${OpenCV_INCLUDE_DIRS} ${Kinect2SDK_INCLUDE_DIR} )
+
+ADD_LIBRARY( Kinect2Input SHARED main FTHelper2 KinectSensor KinectTracker)
+TARGET_LINK_LIBRARIES( Kinect2Input opencv_core opencv_highgui ${Kinect2SDK_LIBRARIES})
+SET_PROPERTY(TARGET Kinect2Input PROPERTY FOLDER "input")
+
+INSTALL(TARGETS Kinect2Input DESTINATION bin/modules )
+#INSTALL(FILES ${KinectTOOLKIT_DLLS} DESTINATION bin)
