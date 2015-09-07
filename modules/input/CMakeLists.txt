@@ -1,1 +1,1 @@
-SUBDIRS( CameraInput DepthBinStream FeretListInput KinectInput Kinect2Input SimpleLineInputModule )
+SUBDIRS( CameraInput FeretListInput KinectInput Kinect2Input SimpleLineInputModule )
