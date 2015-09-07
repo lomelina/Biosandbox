@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 2.8)
+
+SET(TINYXML ${CMAKE_SOURCE_DIR}/tinyxml)
+
+find_package(OpenCV REQUIRED )
+
+SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
+
+PROJECT( BIOSANDBOX )
+
+SET(BIOSANDBOX_SOURCE ${CMAKE_SOURCE_DIR}/biosandbox)
+
+SUBDIRS( biosandbox modules libBioSandbox APPS)
+
