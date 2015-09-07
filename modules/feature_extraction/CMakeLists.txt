@@ -1,1 +1,1 @@
-SUBDIRS( PcaFeatureExtractionModule WholeImaeFEModule LbpFEModule )
+SUBDIRS( LbpFEModule )
